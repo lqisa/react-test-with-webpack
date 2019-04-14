@@ -1,10 +1,7 @@
 const path = require('path')
 const config = require('../config')
-const webpack = require('webpack')
 const devMode = process.env.NODE_ENV !== 'production'
 console.log(`devMode: ${devMode}`)
-// const webpack = require('webpack')
-
 
 // Extract text from a bundle, or bundles, into a separate file.
 // 此处用于从bundle.js中提取CSS文件到单独的文件
@@ -115,7 +112,12 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        use: ['babel-loader']
+        use: {
+          loader: 'babel-loader',
+          options: {
+            plugins: devMode ? ['@babel/transform-react-jsx-source'] : []
+          }
+        }
       }
     ]
   },

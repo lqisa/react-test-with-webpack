@@ -1,8 +1,10 @@
-@import url("http://10.211.32.231/test.css");
-@import url('https://fonts.googleapis.com/css?family=Roboto');
+// @import url("http://10.211.32.231/test.css");
+// @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-#app {
-  text-align: center;
+html {
+  background-color: beige;
+}
+#root {
   span {
     color: green;
   }
