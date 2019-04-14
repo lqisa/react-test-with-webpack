@@ -3,6 +3,7 @@
     "@babel/preset-react"
   ],
   "plugins": [
-    "syntax-dynamic-import"
+    "syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties"
   ]
 }

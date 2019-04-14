@@ -147,7 +147,7 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: path.posix.join(outputPath, devMode ? `css/[name].css` : `css/[name].[hash].css`),
+      filename: path.posix.join(config.build.assetsSubDirectory, devMode ? `css/[name].css` : `css/[name].[hash].css`),
       chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
     })
   ]
