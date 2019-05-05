@@ -4,6 +4,9 @@
   "description": "react project with webpack",
   "main": "",
   "scripts": {
+    "flow-start": "flow status || true",
+    "flow-stop": "flow stop",
+    "eslint": "eslint src/**/**.js",
     "start": "npm run dev",
     "build-prod": "node build/build-prod.js",
     "build-test": "node build/build-test.js",
@@ -17,6 +20,7 @@
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.4.3",
+    "@babel/preset-flow": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
@@ -24,9 +28,11 @@
     "eslint": "^5.5.0",
     "eslint-config-react-app": "^3.0.8",
     "eslint-plugin-flowtype": "^3.6.1",
+    "eslint-plugin-html": "^5.0.3",
     "eslint-plugin-import": "^2.17.1",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "flow-bin": "^0.98.0",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.5",
     "node-sass": "^4.9.3",
@@ -43,6 +49,15 @@
     "react-scripts": "^2.1.8"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "plugin:flowtype/recommended"
+    ],
+    "rules": {},
+    "plugins": [
+      "html",
+      "flowtype",
+      "jsx-a11y"
+    ]
   }
 }
