@@ -1,9 +1,15 @@
 {
   "presets": [
+    // Optional: flow-support
     "@babel/preset-flow",
     "@babel/preset-react"
   ],
   "plugins": [
+    // Optional: Convert Flow React props annotation to PropTypes
+    // [
+    //   "react-flow-props-to-prop-types",
+    //   { /* options */}
+    // ],
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-proposal-class-properties"
   ]

@@ -24,6 +24,7 @@
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.5",
+    "babel-plugin-react-flow-props-to-prop-types": "^0.15.0",
     "css-loader": "^1.0.0",
     "eslint": "^5.5.0",
     "eslint-config-react-app": "^3.0.8",
@@ -44,8 +45,11 @@
   },
   "keywords": [],
   "dependencies": {
+    "history": "^4.9.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-router-config": "^5.0.0",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "^2.1.8"
   },
   "eslintConfig": {

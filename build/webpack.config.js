@@ -30,7 +30,9 @@ module.exports = {
   devServer: {
     // contentBase: path.join(__dirname, 'dist'),
     compress: true,
-    port: 9000
+    port: 9000,
+    // 修复cannot GET /xxxx
+    historyApiFallback: true,
   },
   // 告诉 webpack 在哪里输出它所创建的 bundles，以及如何命名这些文件，主输出文件**默认**为 `./dist/main.js`，
   // 其他生成文件的**默认**输出目录是 `./dist。`
