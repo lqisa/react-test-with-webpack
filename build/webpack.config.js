@@ -16,9 +16,12 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const htmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
+  resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
+  },
   // JavaScript 执行文件入口 (default: `./src/index.js`)
   // entry: string | Array<string> | {[entryChunkName: string]: string|Array<string>}
-  entry: './src/main.js', // entry: ['./src/main.js']
+  entry: './src/main.tsx', // entry: ['./src/main.js']
   // 上述写法是以下的简写
   /* entry: {
     main: './src/main.js'
@@ -120,7 +123,14 @@ module.exports = {
             plugins: devMode ? ['@babel/transform-react-jsx-source'] : []
           }
         }
-      }
+      },
+      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader'
+      },
+      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
     ]
   },
   // Plugin 是用来扩展 Webpack 功能的，通过在构建流程里注入钩子实现
