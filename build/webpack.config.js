@@ -21,7 +21,7 @@ module.exports = {
   },
   // JavaScript 执行文件入口 (default: `./src/index.js`)
   // entry: string | Array<string> | {[entryChunkName: string]: string|Array<string>}
-  entry: './src/main.tsx', // entry: ['./src/main.js']
+  entry: './src/main.js', // entry: ['./src/main.js']
   // 上述写法是以下的简写
   /* entry: {
     main: './src/main.js'
@@ -30,6 +30,7 @@ module.exports = {
    * mode: development | production (default) | none
    */
   mode: devMode ? 'development' : 'production',
+  devtool: 'inline-source-map',
   devServer: {
     // contentBase: path.join(__dirname, 'dist'),
     compress: true,
