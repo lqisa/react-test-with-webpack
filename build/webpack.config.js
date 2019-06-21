@@ -30,7 +30,7 @@ module.exports = {
    * mode: development | production (default) | none
    */
   mode: devMode ? 'development' : 'production',
-  devtool: 'inline-source-map',
+  devtool: devMode ? 'cheap-eval-source-map' : '',
   devServer: {
     // contentBase: path.join(__dirname, 'dist'),
     compress: true,

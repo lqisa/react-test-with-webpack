@@ -1,8 +1,9 @@
 {
   "presets": [
     // Optional: flow-support
-    "@babel/preset-flow",
-    "@babel/preset-react"
+    // "@babel/preset-flow",
+    "@babel/preset-react",
+    "mobx",
   ],
   "plugins": [
     // Optional: Convert Flow React props annotation to PropTypes
@@ -11,6 +12,8 @@
     //   { /* options */}
     // ],
     "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-proposal-class-properties"
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/plugin-proposal-export-default-from"
   ]
 }
