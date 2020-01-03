@@ -1,19 +1,20 @@
 const path = require('path')
 const config = require('../config')
-const devMode = process.env.NODE_ENV !== 'production'
-console.log(`devMode: ${devMode}`)
+const devMode = true
+
+process.env.NODE_ENV = 'production'
 
 // Extract text from a bundle, or bundles, into a separate file.
 // 此处用于从bundle.js中提取CSS文件到单独的文件
 // const ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 // Since webpack v4 the `extract-text-webpack-plugin` should **not be used** for css.Use mini-css-extract-plugin instead. (https://github.com/webpack-contrib/mini-css-extract-plugin)
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 // simplifies creation of HTML files to serve your webpack bundles
 // especially useful for webpack bundles that include a `hash` in the filename which changes every compilation
 // You can either let the plugin generate an HTML file for you, supply your own template using lodash templates or use your own loader
-const htmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
   resolve: {
@@ -21,7 +22,7 @@ module.exports = {
   },
   // JavaScript 执行文件入口 (default: `./src/index.js`)
   // entry: string | Array<string> | {[entryChunkName: string]: string|Array<string>}
-  entry: './src/main.js', // entry: ['./src/main.js']
+  entry: ['@babel/polyfill', './src/main.js'], // entry: ['./src/main.js']
   // 上述写法是以下的简写
   /* entry: {
     main: './src/main.js'
@@ -30,13 +31,13 @@ module.exports = {
    * mode: development | production (default) | none
    */
   mode: devMode ? 'development' : 'production',
-  devtool: devMode ? 'cheap-eval-source-map' : '',
+  devtool: devMode ? 'source-map' : '',
   devServer: {
     // contentBase: path.join(__dirname, 'dist'),
     compress: true,
     port: 9000,
     // 修复cannot GET /xxxx
-    historyApiFallback: true,
+    historyApiFallback: true
   },
   // 告诉 webpack 在哪里输出它所创建的 bundles，以及如何命名这些文件，主输出文件**默认**为 `./dist/main.js`，
   // 其他生成文件的**默认**输出目录是 `./dist。`
@@ -73,18 +74,18 @@ module.exports = {
    * 2. 内联：在每个 import 语句中显式指定 loader。
    *    1) 使用 ! 将资源中的 loader 分开:
    *      `import Styles from 'style-loader!css-loader?modules!./styles.css';`)
-   *    2) 选项可以传递查询参数，例如 ?key=value&foo=bar，或者一个 `JSON 对象`，例如 ?{"key":"value","foo":"bar"}
+   *    2) 选项可以传递查询参数，例如 ?key=value&foo=bar，或者一个 `JSON 对象`，例如 ?{'key':'value','foo':'bar'}
    * 3. CLI：在 shell 命令中指定它们。
    *    `webpack --module-bind jade-loader --module-bind 'css=style-loader!css-loader'`
    *    这会对 `.jade` 文件使用 `jade-loader`，对 `.css` 文件使用 `style-loader` 和 `css-loader`
    */
   module: {
     rules: [
-        /**
-         *  用正则去匹配要使用该 loader 转换的 CSS 文件
-         *  1. use 属性的值需要是一个由 Loader 名称组成的数组，Loader 的执行顺序是"由后到前"的
-         *  2. 每一个 Loader 都可以通过 URL querystring 的方式传入参数 (minimize 告诉 css-loader 要开启 CSS 压缩)
-         */
+      /**
+       *  用正则去匹配要使用该 loader 转换的 CSS 文件
+       *  1. use 属性的值需要是一个由 Loader 名称组成的数组，Loader 的执行顺序是'由后到前'的
+       *  2. 每一个 Loader 都可以通过 URL querystring 的方式传入参数 (minimize 告诉 css-loader 要开启 CSS 压缩)
+       */
       {
         test: /\.(sa|sc)ss$/,
         /*
@@ -98,7 +99,8 @@ module.exports = {
               import: false
             }
           }
-        ]*/
+        ]
+        */
 
         // 从bundle.js中提取CSS文件到单独的文件
         // use: ExtractTextPlugin.extract({
@@ -107,7 +109,7 @@ module.exports = {
         // })
 
         use: [
-          devMode? 'style-loader' : MiniCssExtractPlugin.loader,
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'sass-loader'
         ]
@@ -130,8 +132,21 @@ module.exports = {
         test: /\.tsx?$/,
         loader: 'awesome-typescript-loader'
       },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true, // webpack@1.x
+              disable: true // webpack@2.x and newer
+            }
+          }
+        ]
+      },
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+      { enforce: 'pre', test: /\.js$/, loader: 'source-map-loader' }
     ]
   },
   // Plugin 是用来扩展 Webpack 功能的，通过在构建流程里注入钩子实现
@@ -139,10 +154,10 @@ module.exports = {
   plugins: [
     // new webpack.DefinePlugin({
     //   'process.env': {
-    //     NODE_ENV: '"development"'
+    //     NODE_ENV: ''development''
     //   }
     // }),
-    new htmlWebpackPlugin({
+    new HtmlWebpackPlugin({
       template: 'index.html',
       filename: 'index.html'
     }),
