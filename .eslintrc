@@ -1,3 +1,44 @@
 {
-  "extends": ["standard", "react-app"]
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "extends": [
+    "esnext",
+    "standard",
+    "react-app"
+  ],
+  "plugins": [
+    "import",
+    "react",
+    "jsx-a11y"
+  ],
+  "rules": {
+    "class-methods-use-this": [
+      "warn",
+      {
+        "exceptMethods": [
+          "render",
+          "componentDidMount",
+          "componentDidUpdate",
+          "componentWillUnmount",
+          "shouldComponentUpdate",
+          "getSnapshotBeforeUpdate",
+          "componentDidCatch",
+          "UNSAFE_componentWillMount",
+          "UNSAFE_componentWillReceiveProps",
+          "UNSAFE_componentWillUpdate"
+        ]
+      }
+    ],
+    "react/jsx-no-bind": [
+      "warn",
+      {
+        "ignoreDOMComponents": true,
+        "ignoreRefs": true,
+        "allowArrowFunctions": true,
+        "allowFunctions": true
+      }
+    ]
+  }
 }
