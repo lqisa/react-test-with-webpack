@@ -1,19 +1,17 @@
 {
   "presets": [
-    // Optional: flow-support
-    // "@babel/preset-flow",
     "@babel/preset-react",
-    "mobx",
+    "mobx"
   ],
   "plugins": [
-    // Optional: Convert Flow React props annotation to PropTypes
-    // [
-    //   "react-flow-props-to-prop-types",
-    //   { /* options */}
-    // ],
     "@babel/plugin-syntax-dynamic-import",
     ["@babel/plugin-proposal-decorators", { "legacy": true }],
     ["@babel/plugin-proposal-class-properties", { "loose": true }],
-    "@babel/plugin-proposal-export-default-from"
+    "@babel/plugin-proposal-export-default-from",
+    ["import", {
+      "libraryName": "antd",
+      "libraryDirectory": "es",
+      "style": "css" // `style: true` 会加载 less 文件
+    }]
   ]
 }
