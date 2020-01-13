@@ -1,4 +1,5 @@
 {
+  "parser": "babel-eslint",
   "env": {
     "es6": true,
     "browser": true
@@ -9,12 +10,18 @@
     "react-app"
   ],
   "plugins": [
+    "babel",
     "import",
     "react",
     "react-hooks",
     "jsx-a11y"
   ],
   "rules": {
+
+    // TODO: Remove when is https://github.com/babel/babel-eslint/issues/530 fixed
+    "template-curly-spacing" : "off",
+    "indent" : "off",
+
     "class-methods-use-this": [
       "warn",
       {
@@ -41,9 +48,9 @@
         "allowFunctions": true
       }
     ],
-    "react-hooks/rules-of-hooks": "error",
     // 检查 Hook 的规则
-    "react-hooks/exhaustive-deps": "warn"
+    "react-hooks/rules-of-hooks": "error",
     // 检查 effect 的依赖
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
