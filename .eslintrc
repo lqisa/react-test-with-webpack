@@ -4,41 +4,14 @@
     "es6": true,
     "browser": true
   },
-  "extends": [
-    "esnext",
-    "standard",
-    "react-app"
-  ],
-  "plugins": [
-    "babel",
-    "import",
-    "react",
-    "react-hooks",
-    "jsx-a11y"
-  ],
+  "extends": ["esnext", "standard", "react-app"],
+  "plugins": ["babel", "import", "react", "react-hooks", "jsx-a11y"],
   "rules": {
-
     // TODO: Remove when is https://github.com/babel/babel-eslint/issues/530 fixed
-    "template-curly-spacing" : "off",
-    "indent" : "off",
+    "template-curly-spacing": "off",
+    "indent": "off",
 
-    "class-methods-use-this": [
-      "warn",
-      {
-        "exceptMethods": [
-          "render",
-          "componentDidMount",
-          "componentDidUpdate",
-          "componentWillUnmount",
-          "shouldComponentUpdate",
-          "getSnapshotBeforeUpdate",
-          "componentDidCatch",
-          "UNSAFE_componentWillMount",
-          "UNSAFE_componentWillReceiveProps",
-          "UNSAFE_componentWillUpdate"
-        ]
-      }
-    ],
+    "class-methods-use-this": ["off"],
     "react/jsx-no-bind": [
       "warn",
       {
