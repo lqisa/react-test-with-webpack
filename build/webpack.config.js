@@ -16,6 +16,17 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 // You can either let the plugin generate an HTML file for you, supply your own template using lodash templates or use your own loader
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
+function getCssLoaderConfigureation () {
+  return {
+    loader: 'css-loader',
+    options: {
+      modules: {
+        localIdentName: '[path][name]__[local]--[hash:base64:5]'
+      }
+    }
+  }
+}
+
 module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx']
@@ -43,7 +54,10 @@ module.exports = {
   // 其他生成文件的**默认**输出目录是 `./dist。`
   output: {
     // 把所有依赖的模块合并输出到一个 bundle.js 文件
-    filename: path.posix.join(config.build.assetsSubDirectory, 'js/[name].[hash].js'),
+    filename: path.posix.join(
+      config.build.assetsSubDirectory,
+      'js/[name].[hash].js'
+    ),
     /**
      *  path.resolve 对路径进行解析 & 连接
      * __dirname 当前执行脚本所在的目录 (即该webpack.config.js的绝对路径)
@@ -51,7 +65,7 @@ module.exports = {
     // 输出文件都放到 dist 目录下
     // path: path.resolve(__dirname, '../dist')
 
-    path: path.posix.join(config.build.assetsRoot, devMode ? 'test' : 'prod'),
+    path: path.posix.join(config.build.assetsRoot, devMode ? 'test' : 'prod')
 
     /**
      *  错误写法： path: './dist'
@@ -110,13 +124,16 @@ module.exports = {
 
         use: [
           devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
+          getCssLoaderConfigureation(),
           'sass-loader'
         ]
       },
       {
         test: /\.css$/,
-        use: [devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader']
+        use: [
+          devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
+          getCssLoaderConfigureation()
+        ]
       },
       {
         test: /\.js$/,
@@ -177,8 +194,11 @@ module.exports = {
     new MiniCssExtractPlugin({
       // Options similar to the same options in webpackOptions.output
       // both options are optional
-      filename: path.posix.join(config.build.assetsSubDirectory, devMode ? `css/[name].css` : `css/[name].[hash].css`),
-      chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+      filename: path.posix.join(
+        config.build.assetsSubDirectory,
+        devMode ? 'css/[name].css' : 'css/[name].[hash].css'
+      ),
+      chunkFilename: devMode ? '[id].css' : '[id].[hash].css'
     })
   ]
 }

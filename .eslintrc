@@ -4,7 +4,13 @@
     "es6": true,
     "browser": true
   },
-  "extends": ["esnext", "standard", "react-app"],
+  "extends": [
+    "eslint:recommended",
+    // "plugin:react/recommended",
+    "esnext",
+    "standard",
+    "react-app"
+  ],
   "plugins": ["babel", "import", "react", "react-hooks", "jsx-a11y"],
   "rules": {
     // TODO: Remove when is https://github.com/babel/babel-eslint/issues/530 fixed
